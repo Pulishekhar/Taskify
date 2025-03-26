@@ -543,6 +543,18 @@ app.get('/test-email', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+// Add this near your other routes (before error handling)
+app.get("/", (req, res) => {
+    res.json({
+      status: "API is running",
+      message: "Welcome to Taskify backend!",
+      endpoints: {
+        tasks: "/api/tasks",
+        projects: "/api/projects",
+        docs: "https://github.com/your-repo/docs" // Optional
+      }
+    });
+  });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
